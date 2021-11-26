@@ -20,7 +20,7 @@ public:
 		ini.LoadFile(path);
 
 		detail::get_value(ini, setAsAlly, "Settings", "SetAsAlly", ";Whether neutral NPCs should be considered as friends or allies when hitting them. This affects the number of hits they'll take before turning hostile (see gamesettings)");
-		detail::get_value(ini, onlyCombat, "Settings", "OnlyCombat", ";NPCs will only ignore player hits in combat");
+		detail::get_value(ini, onlyCombat, "Settings", "OnlyCombat", ";Neutral NPCs will only ignore player hits during combat");
 		detail::get_value(ini, ignoreFriendlyFire, "Settings", "IgnoreFriendlyFire", ";Neutral NPCs will ALWAYS ignore hits from the player");
 		detail::get_value(ini, changeGameSettings, "Settings", "ModifyGameSettings", ";Modify included gamesettings using this config");
 
