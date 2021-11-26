@@ -98,6 +98,7 @@ void OnInit(SKSE::MessagingInterface::Message* a_msg)
 				set_gmst("iAllyHitCombatAllowed", settings->iAllyHitCombatAllowed);
 			}
 		}
+		logger::info("Patch done... OnlyCombat = {} , SetAsAlly = {}, IgnoreFriendlyFire = {}", settings->onlyCombat, settings->setAsAlly, settings->ignoreFriendlyFire);
 	}
 }
 
