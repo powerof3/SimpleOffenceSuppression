@@ -63,15 +63,15 @@ namespace SimpleOffenceSuppression
 
 	void Install()
 	{
-		REL::Relocation<std::uintptr_t> target{ REL::ID(37672) };
+		REL::Relocation<std::uintptr_t> target{ REL::ID(38626) };
 
 		const auto settings = Settings::GetSingleton();
 		if (settings->ignoreFriendlyFire) {
-			stl::write_thunk_call<IgnoreFriendlyFire::GetFactionRank>(target.address() + 0x187);
+			stl::write_thunk_call<IgnoreFriendlyFire::GetFactionRank>(target.address() + 0x182);
 		} else if (settings->onlyCombat) {
-			stl::write_thunk_call<OnlyCombat::GetFactionRank>(target.address() + 0x187);
+			stl::write_thunk_call<OnlyCombat::GetFactionRank>(target.address() + 0x182);
 		} else {
-			stl::write_thunk_call<GetFactionRank>(target.address() + 0x187);
+			stl::write_thunk_call<GetFactionRank>(target.address() + 0x182);
 		}
 	}
 }
