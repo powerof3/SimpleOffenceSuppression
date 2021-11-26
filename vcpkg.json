@@ -1,0 +1,14 @@
+{
+  "name": "simple-offence-suppression",
+  "version-string": "2.1.0",
+  "description": "Simple Offence Suppression",
+  "homepage": "",
+  "license": "MIT",
+  "dependencies": [
+    "boost-stl-interfaces",
+    "rsm-binary-io",
+    "simpleini",
+    "spdlog",
+    "xbyak"
+  ]
+}
