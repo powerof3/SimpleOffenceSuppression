@@ -21,8 +21,8 @@ public:
 
 		detail::get_value(ini, setAsAlly, "Settings", "SetAsAlly", ";Whether neutral NPCs should be considered as friends or allies when hitting them. This affects the number of hits they'll take before turning hostile (see gamesettings)");
 		detail::get_value(ini, onlyCombat, "Settings", "OnlyCombat", ";Neutral NPCs will only ignore player hits during combat");
-		detail::get_value(ini, ignoreFriendlyFire, "Settings", "IgnoreFriendlyFire", ";Neutral NPCs will ALWAYS ignore hits from the player");
-		detail::get_value(ini, changeGameSettings, "Settings", "ModifyGameSettings", ";Modify included gamesettings using this config");
+		detail::get_value(ini, ignoreFriendlyFire, "Settings", "IgnoreFriendlyFire", ";Overrides the above settings. Neutral NPCs will ALWAYS ignore hits from the player");
+		detail::get_value(ini, changeGameSettings, "Settings", "ModifyGameSettings", ";Modify following gamesettings using config. These can still be modified by other mods during playtime");
 
 		detail::get_value(ini, iFriendHitNonCombatAllowed, "GameSettings", "iFriendHitNonCombatAllowed", nullptr);
 		detail::get_value(ini, iFriendHitCombatAllowed, "GameSettings", "iFriendHitCombatAllowed", nullptr);
