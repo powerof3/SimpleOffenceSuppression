@@ -158,5 +158,8 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_s
 
 	SimpleOffenceSuppression::Install();
 
+	auto messaging = SKSE::GetMessagingInterface();
+	messaging->RegisterListener("SKSE", OnInit);
+
 	return true;
 }
