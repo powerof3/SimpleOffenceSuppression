@@ -16,7 +16,7 @@ namespace SimpleOffenceSuppression
 						if ((a_subject->formFlags & FLAGS::kIgnoreFriendlyHits) == 0) {
 							a_subject->formFlags |= FLAGS::kIgnoreFriendlyHits;
 						}
-						return stl::to_underlying(Settings::GetSingleton()->newRank);
+						return ::stl::to_underlying(Settings::GetSingleton()->newRank);
 					}
 				}
 				return factionRank;
@@ -34,7 +34,7 @@ namespace SimpleOffenceSuppression
 				const auto factionRank = func(a_subject, a_target);
 				if (factionRank == 0) {
 					if (a_target && a_subject && !a_subject->IsHostileToActor(a_target) && a_target->IsInCombat()) {
-						return stl::to_underlying(Settings::GetSingleton()->newRank);
+						return ::stl::to_underlying(Settings::GetSingleton()->newRank);
 					}
 				}
 				return factionRank;
@@ -52,7 +52,7 @@ namespace SimpleOffenceSuppression
 				const auto factionRank = func(a_subject, a_target);
 				if (factionRank == 0) {
 					if (a_target && a_subject && !a_subject->IsHostileToActor(a_target)) {
-						return stl::to_underlying(Settings::GetSingleton()->newRank);
+						return ::stl::to_underlying(Settings::GetSingleton()->newRank);
 					}
 				}
 				return factionRank;
@@ -67,11 +67,11 @@ namespace SimpleOffenceSuppression
 
 		const auto settings = Settings::GetSingleton();
 		if (settings->ignoreFriendlyFire) {
-			stl::write_thunk_call<IgnoreFriendlyFire::GetFactionRank>(target.address() + 0x187);
+			::stl::write_thunk_call<IgnoreFriendlyFire::GetFactionRank>(target.address() + 0x187);
 		} else if (settings->onlyCombat) {
-			stl::write_thunk_call<OnlyCombat::GetFactionRank>(target.address() + 0x187);
+			::stl::write_thunk_call<OnlyCombat::GetFactionRank>(target.address() + 0x187);
 		} else {
-			stl::write_thunk_call<GetFactionRank>(target.address() + 0x187);
+			::stl::write_thunk_call<GetFactionRank>(target.address() + 0x187);
 		}
 	}
 }
@@ -140,7 +140,13 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Query(const SKSE::QueryInterface* a
 	}
 
 	const auto ver = a_skse->RuntimeVersion();
-	if (ver < SKSE::RUNTIME_1_5_39) {
+	if (ver <
+#ifndef SKYRIMVR
+		SKSE::RUNTIME_1_5_39
+#else
+		SKSE::RUNTIME_VR_1_4_15
+#endif
+	) {
 		logger::critical(FMT_STRING("Unsupported runtime version {}"), ver.string());
 		return false;
 	}
