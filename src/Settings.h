@@ -30,7 +30,7 @@ public:
 		detail::get_value(ini, iAllyHitCombatAllowed, "GameSettings", "iAllyHitCombatAllowed", nullptr);
 
 		if (setAsAlly) {
-			newRank = RE::FIGHT_REACTION::kAlly;
+			newReaction = RE::FIGHT_REACTION::kAlly;
 		}
 
 		ini.SaveFile(path);
@@ -47,10 +47,15 @@ public:
 	std::int32_t iAllyHitNonCombatAllowed{ 3 };
 	std::int32_t iAllyHitCombatAllowed{ 1000 };
 
-	RE::FIGHT_REACTION newRank{ RE::FIGHT_REACTION::kFriend };
+	RE::FIGHT_REACTION newReaction{ RE::FIGHT_REACTION::kFriend };
 
 private:
-	struct detail
+	Settings()
+	{
+		Load();
+	}
+
+    struct detail
 	{
 		static void get_value(CSimpleIniA& a_ini, bool& a_value, const char* a_section, const char* a_key, const char* a_comment)
 		{
