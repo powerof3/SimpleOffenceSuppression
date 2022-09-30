@@ -7,13 +7,13 @@ namespace SimpleOffenceSuppression
 	{
 		static RE::FIGHT_REACTION thunk(RE::Actor* a_subject, RE::Actor* a_player)
 		{
-			const auto factionRank = func(a_subject, a_player);
-			if (factionRank == RE::FIGHT_REACTION::kNeutral) {
+			const auto fightReaction = func(a_subject, a_player);
+			if (fightReaction == RE::FIGHT_REACTION::kNeutral) {
 				if (a_subject && a_player) {
 					return T::func(a_subject, a_player);
 				}
 			}
-			return factionRank;
+			return fightReaction;
 		}
 		static inline REL::Relocation<decltype(thunk)> func;
 
