@@ -11,7 +11,6 @@ public:
 
 	void Load()
 	{
-				
 		constexpr auto path = L"Data/SKSE/Plugins/po3_SimpleOffenceSuppression.ini";
 
 		CSimpleIniA ini;
@@ -37,11 +36,11 @@ public:
 	}
 
 	bool setAsAlly{ false };
-	bool onlyCombat{ true };
+	bool onlyCombat{ false };
 	bool ignoreFriendlyFire{ false };
 
 	bool changeGameSettings{ false };
-	
+
 	std::int32_t iFriendHitNonCombatAllowed{ 0 };
 	std::int32_t iFriendHitCombatAllowed{ 4 };
 	std::int32_t iAllyHitNonCombatAllowed{ 3 };
@@ -55,21 +54,18 @@ private:
 		Load();
 	}
 
-    struct detail
+	struct detail
 	{
 		static void get_value(CSimpleIniA& a_ini, bool& a_value, const char* a_section, const char* a_key, const char* a_comment)
 		{
 			a_value = a_ini.GetBoolValue(a_section, a_key, a_value);
 			a_ini.SetBoolValue(a_section, a_key, a_value, a_comment);
-		};
+		}
 
 		static void get_value(CSimpleIniA& a_ini, std::int32_t& a_value, const char* a_section, const char* a_key, const char* a_comment)
 		{
-			try {				
-				a_value = string::lexical_cast<std::int32_t>(a_ini.GetValue(a_section, a_key, std::to_string(a_value).c_str()));
-				a_ini.SetValue(a_section, a_key, std::to_string(a_value).c_str(), a_comment);
-			} catch (...) {
-			}
+			a_value = string::lexical_cast<std::int32_t>(a_ini.GetValue(a_section, a_key, std::to_string(a_value).c_str()));
+			a_ini.SetValue(a_section, a_key, std::to_string(a_value).c_str(), a_comment);
 		}
 	};
 };
